@@ -14,7 +14,7 @@ A modern, responsive, and interactive Periodic Table web application built using
 - **JavaScript (ES6):** Dynamic DOM manipulation, filtering logic, and interactive modal dialog.
 
 ## 🌐 Live Demo
-[View Live Demo Here](https://your-github-username.github.io/your-repo-name/)
+[View Live Demo Here](https://nabeel459.github.io/Periodic-Table/)
 
 ## 🚀 How to Run Locally
 1. Clone this repository:
