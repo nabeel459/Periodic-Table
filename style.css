@@ -1,0 +1,278 @@
+
+      :root {
+        --bg-color: #0f172a;
+        --card-bg: #1e293b;
+        --text-color: #f8fafc;
+        --border-color: #334155;
+
+        --reactive-nonmetal: #0284c7;
+        --noble-gas: #7c3aed;
+        --alkali-metal: #dc2626;
+        --alkaline-earth: #ea580c;
+        --metalloid: #0d9488;
+        --post-transition: #16a34a;
+        --transition-metal: #d97706;
+        --lanthanide: #c026d3;
+        --actinide: #db2777;
+        --unknown: #475569;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+        color: #38bdf8;
+        margin-bottom: 5px;
+      }
+
+      header p {
+        color: #94a3b8;
+        font-size: 0.95rem;
+      }
+
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        max-width: 1000px;
+        margin-bottom: 25px;
+      }
+
+      .filter-btn {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        color: var(--text-color);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background-color: #38bdf8;
+        color: #0f172a;
+        font-weight: bold;
+        border-color: #38bdf8;
+      }
+
+      .periodic-table {
+        display: grid;
+        grid-template-columns: repeat(18, minmax(50px, 1fr));
+        gap: 5px;
+        max-width: 1250px;
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+
+      .element {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 3px;
+        aspect-ratio: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s,
+          opacity 0.2s;
+      }
+
+      .element:hover {
+        transform: scale(1.18);
+        z-index: 10;
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+        border-color: #38bdf8;
+      }
+
+      .element.dimmed {
+        opacity: 0.2;
+      }
+
+      .number {
+        font-size: 0.6rem;
+        color: #94a3b8;
+      }
+
+      .symbol {
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .name {
+        font-size: 0.5rem;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #cbd5e1;
+      }
+
+      .reactive-nonmetal {
+        border-top: 3px solid var(--reactive-nonmetal);
+      }
+      .noble-gas {
+        border-top: 3px solid var(--noble-gas);
+      }
+      .alkali-metal {
+        border-top: 3px solid var(--alkali-metal);
+      }
+      .alkaline-earth {
+        border-top: 3px solid var(--alkaline-earth);
+      }
+      .metalloid {
+        border-top: 3px solid var(--metalloid);
+      }
+      .post-transition {
+        border-top: 3px solid var(--post-transition);
+      }
+      .transition-metal {
+        border-top: 3px solid var(--transition-metal);
+      }
+      .lanthanide {
+        border-top: 3px solid var(--lanthanide);
+      }
+      .actinide {
+        border-top: 3px solid var(--actinide);
+      }
+      .unknown {
+        border-top: 3px solid var(--unknown);
+      }
+
+      .gap {
+        grid-column: span 1;
+      }
+
+      .lanthanide-marker,
+      .actinide-marker {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.65rem;
+        color: #94a3b8;
+        border: 1px dashed var(--border-color);
+        border-radius: 6px;
+      }
+
+      .series-spacer {
+        grid-column: 1 / -1;
+        height: 15px;
+      }
+
+      footer {
+        margin-top: 30px;
+        color: #64748b;
+        font-size: 0.85rem;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 100;
+      }
+
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .modal-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 24px;
+        max-width: 350px;
+        width: 90%;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 15px;
+        background: none;
+        border: none;
+        color: #94a3b8;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .modal-symbol {
+        font-size: 2.2rem;
+        font-weight: bold;
+        background: #0f172a;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        color: #38bdf8;
+      }
+
+      .modal-info h2 {
+        font-size: 1.3rem;
+      }
+      .modal-info p {
+        font-size: 0.85rem;
+        color: #94a3b8;
+      }
+
+      .modal-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        font-size: 0.85rem;
+        margin-top: 15px;
+        border-top: 1px solid var(--border-color);
+        padding-top: 15px;
+      }
+
+      .detail-item span {
+        display: block;
+        color: #94a3b8;
+        font-size: 0.75rem;
+      }
